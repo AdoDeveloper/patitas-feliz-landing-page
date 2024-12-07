@@ -1,180 +1,172 @@
 'use client';
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { Card, CardContent } from './components/ui/card'
-import { Calendar, MapPin, Search, Menu } from 'lucide-react'
-import { Button } from './components/ui/button'
-import { useState } from 'react' // Importamos useState para manejar el estado del menú
+import Image from 'next/image';
+import Link from 'next/link';
+import { Calendar, MapPin, Search } from 'lucide-react';
+import { Button } from './components/ui/button';
+import { useState } from 'react';
+import { FaAndroid, FaUsers, FaClinicMedical, FaShieldAlt } from 'react-icons/fa';
 
 export default function LandingPage() {
-  // Estado para controlar la visibilidad del menú
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen); // Alternamos la visibilidad del menú
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-[#EBE6DA]">
-
-      {/* Menú desplegable (solo visible en pantallas pequeñas) */}
-      {isMenuOpen && (
-        <nav className="md:hidden flex flex-col items-center gap-4 bg-[#EBE6DA] py-4">
-          <Link 
-            className="text-sm font-medium hover:underline underline-offset-4 text-[#305441]"
-            href="#features"
-          >
-            Características
-          </Link>
-          <Link 
-            className="text-sm font-medium hover:underline underline-offset-4 text-[#305441]"
-            href="#testimonials"
-          >
-            Testimonios
-          </Link>
-          <Link 
-            className="text-sm font-medium hover:underline underline-offset-4 text-[#305441]"
-            href="#download"
-          >
-            Descargar
-          </Link>
-        </nav>
-      )}
-
-      <main className="flex-1">
-        {/* Aquí va el contenido principal de la página */}
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl text-[#305441]">
-                    Cuida a tus mascotas con Patitas Feliz
-                  </h1>
-                  <p className="max-w-[600px] text-gray-600 md:text-xl">
-                    Conecta con veterinarios, agenda citas y cuida la salud de tus mascotas de manera fácil y rápida.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-4 sm:flex-row">
-                  <Button className="bg-[#305441] text-white hover:bg-[#2A4A3A]">
-                    Descargar Ahora
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="border-[#305441] text-[#305441] hover:bg-[#305441]/10"
-                  >
-                    Conoce Más
-                  </Button>
-                </div>
-              </div>
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/logo.jpg"
-                  alt="Patitas Feliz App Preview"
-                  width={600}
-                  height={600}
-                  className="mx-auto rounded-xl object-contain"
-                />
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:py-24 lg:py-32 bg-[#F5F5F5]">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
+            <div className="flex flex-col justify-center space-y-4">
+              <h1 className="text-4xl tracking-tighter sm:text-5xl text-[#305441] font-extrabold">
+                La mejor manera de cuidar a tus mascotas
+              </h1>
+              <p className="max-w-md text-gray-600 md:text-xl">
+                Con Patitas Feliz, encuentra veterinarios, organiza citas y mantén un registro médico de tus mascotas.
+              </p>
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <Button className="bg-[#305441] text-white hover:bg-[#2A4A3A]">Descargar Ahora</Button>
+                <Button
+                  variant="outline"
+                  className="border-[#305441] text-[#305441] hover:bg-[#305441]/10"
+                >
+                  Conoce Más
+                </Button>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Resto del contenido de la página (Features, Testimonials, Download, etc.) */}
-        <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-white">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-[#305441]">
-              Características Principales
-            </h2>
-            <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
-              <Card className="bg-[#EBE6DA]">
-                <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Calendar className="h-12 w-12 text-[#6BD8C2]" />
-                  <h3 className="text-2xl font-bold text-center text-[#305441]">
-                    Agenda Citas
-                  </h3>
-                  <p className="text-gray-600 text-center">
-                    Programa visitas al veterinario con facilidad y recibe recordatorios.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="bg-[#EBE6DA]">
-                <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <MapPin className="h-12 w-12 text-[#6BD8C2]" />
-                  <h3 className="text-2xl font-bold text-center text-[#305441]">
-                    Encuentra Clínicas
-                  </h3>
-                  <p className="text-gray-600 text-center">
-                    Localiza las mejores clínicas veterinarias cerca de ti.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="bg-[#EBE6DA]">
-                <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Search className="h-12 w-12 text-[#6BD8C2]" />
-                  <h3 className="text-2xl font-bold text-center text-[#305441]">
-                    Historial Médico
-                  </h3>
-                  <p className="text-gray-600 text-center">
-                    Accede al historial médico de tus mascotas en cualquier momento.
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="flex justify-center">
+              <Image
+                src="/hero-image.jpg"
+                alt="App Preview"
+                width={500}
+                height={500}
+                className="rounded-lg shadow-lg"
+              />
             </div>
           </div>
-        </section>
-
-        <section id="testimonials" className="w-full py-12 md:py-24 lg:py-32 bg-[#8FC3B6]">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-white">
-              Lo que dicen nuestros usuarios
-            </h2>
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
-              <Card className="bg-white">
-                <CardContent className="p-6">
-                  <p className="text-gray-600 mb-4">
-                    "Patitas Feliz ha hecho que cuidar de mi perro sea mucho más fácil. ¡Ahora puedo encontrar veterinarios y agendar citas en minutos!"
-                  </p>
-                  <p className="font-semibold text-[#305441]">María G.</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-white">
-                <CardContent className="p-6">
-                  <p className="text-gray-600 mb-4">
-                    "Como veterinario, esta app me ha ayudado a organizar mejor mi agenda y conectar con más clientes. ¡Es una herramienta indispensable!"
-                  </p>
-                  <p className="font-semibold text-[#305441]">Dr. Carlos R.</p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        <section id="download" className="w-full py-12 md:py-24 lg:py-32 bg-[#305441]">
-          <div className="container px-4 md:px-6 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white mb-6">
-              Descarga la app ahora
-            </h2>
-            <Button className="bg-[#6BD8C2] text-white text-xl px-6 py-3">
-              Descargar para iOS
-            </Button>
-            <Button className="bg-[#6BD8C2] text-white text-xl px-6 py-3 mt-4 sm:mt-0 sm:ml-4">
-              Descargar para Android
-            </Button>
-          </div>
-        </section>
-      </main>
-
-      <footer className="w-full py-6 px-4 md:px-6 border-t border-[#305441]/20">
-        <div className="container flex flex-col gap-2 sm:flex-row items-center">
-          <p className="text-xs text-[#305441]">© 2024 Patitas Feliz. Todos los derechos reservados.</p>
-          <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-            <Link className="text-xs hover:underline underline-offset-4 text-[#305441]" href="#">Términos de Servicio</Link>
-            <Link className="text-xs hover:underline underline-offset-4 text-[#305441]" href="#">Privacidad</Link>
-          </nav>
         </div>
-      </footer>
+      </section>
+
+      {/* Características */}
+      <section id="features" className="w-full py-12 bg-white md:py-24 lg:py-32">
+        <div className="container px-4 md:px-6">
+          <h2 className="text-3xl font-bold text-center text-[#305441] mb-12">Características Principales</h2>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {/* Card 1 */}
+            <div className="max-w-xs p-6 mx-auto text-center bg-white rounded-lg shadow-lg">
+              <Calendar className="h-12 w-12 text-[#6BD8C2]" />
+              <h3 className="text-xl font-bold text-[#305441]">Agenda Citas</h3>
+              <p className="text-gray-600">Programa y gestiona citas con veterinarios de forma fácil.</p>
+            </div>
+            {/* Card 2 */}
+            <div className="max-w-xs p-6 mx-auto text-center bg-white rounded-lg shadow-lg">
+              <MapPin className="h-12 w-12 text-[#6BD8C2]" />
+              <h3 className="text-xl font-bold text-[#305441]">Encuentra Clínicas</h3>
+              <p className="text-gray-600">Ubica clínicas cercanas con solo un clic.</p>
+            </div>
+            {/* Card 3 */}
+            <div className="max-w-xs p-6 mx-auto text-center bg-white rounded-lg shadow-lg">
+              <Search className="h-12 w-12 text-[#6BD8C2]" />
+              <h3 className="text-xl font-bold text-[#305441]">Historial Médico</h3>
+              <p className="text-gray-600">Registra y consulta el historial médico de tus mascotas.</p>
+            </div>
+            {/* Card 4 */}
+            <div className="max-w-xs p-6 mx-auto text-center bg-white rounded-lg shadow-lg">
+              <FaUsers className="h-12 w-12 text-[#6BD8C2]" />
+              <h3 className="text-xl font-bold text-[#305441]">Conexión</h3>
+              <p className="text-gray-600">Conecta con otros dueños y profesionales.</p>
+            </div>
+            {/* Card 5 */}
+            <div className="max-w-xs p-6 mx-auto text-center bg-white rounded-lg shadow-lg">
+              <FaClinicMedical className="h-12 w-12 text-[#6BD8C2]" />
+              <h3 className="text-xl font-bold text-[#305441]">Servicios Premium</h3>
+              <p className="text-gray-600">Acceso a servicios adicionales como grooming y vacunación.</p>
+            </div>
+            {/* Card 6 */}
+            <div className="max-w-xs p-6 mx-auto text-center bg-white rounded-lg shadow-lg">
+              <FaShieldAlt className="h-12 w-12 text-[#6BD8C2]" />
+              <h3 className="text-xl font-bold text-[#305441]">Seguridad</h3>
+              <p className="text-gray-600">Toda tu información protegida con tecnología avanzada.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="w-full py-16 md:py-24 bg-[#F5F5F5]">
+        <div className="container px-4 md:px-6">
+          <h2 className="text-3xl font-bold text-center text-[#305441] mb-12">Preguntas Frecuentes</h2>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {/* FAQ Card 1 */}
+            <div className="p-6 bg-white rounded-lg shadow-lg">
+              <h3 className="font-bold text-lg text-[#305441]">¿Es gratuita la aplicación?</h3>
+              <p>Sí, Patitas Feliz es completamente gratuita para los usuarios.</p>
+            </div>
+            {/* FAQ Card 2 */}
+            <div className="p-6 bg-white rounded-lg shadow-lg">
+              <h3 className="font-bold text-lg text-[#305441]">¿Cómo encuentro clínicas?</h3>
+              <p>Usa nuestra herramienta de búsqueda para localizar clínicas cercanas a tu ubicación.</p>
+            </div>
+            {/* FAQ Card 3 */}
+            <div className="p-6 bg-white rounded-lg shadow-lg">
+              <h3 className="font-bold text-lg text-[#305441]">¿La información es segura?</h3>
+              <p>¡Absolutamente! Tu información está protegida con encriptación avanzada.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Beneficios Extra */}
+      <section id="extra-benefits" className="w-full py-16 md:py-24 bg-[#F5F5F5]">
+        <div className="container px-4 md:px-6">
+          <h2 className="text-3xl font-bold text-center text-[#305441] mb-12">
+            ¿Por qué elegir Patitas Feliz?
+          </h2>
+          <div className="grid gap-6 lg:grid-cols-3">
+            {/* Extra Benefit Card 1 */}
+            <div className="flex flex-col items-center p-6 space-y-4 bg-white rounded-lg shadow-lg">
+              <FaUsers className="h-12 w-12 text-[#6BD8C2]" />
+              <h3 className="text-xl font-bold text-[#305441]">Comunidad Activa</h3>
+              <p className="text-center text-gray-600">Únete a miles de usuarios que ya cuidan de sus mascotas con nuestra app.</p>
+            </div>
+            {/* Extra Benefit Card 2 */}
+            <div className="flex flex-col items-center p-6 space-y-4 bg-white rounded-lg shadow-lg">
+              <FaClinicMedical className="h-12 w-12 text-[#6BD8C2]" />
+              <h3 className="text-xl font-bold text-[#305441]">Soporte Veterinario</h3>
+              <p className="text-center text-gray-600">Accede a servicios profesionales y confiables en todo momento.</p>
+            </div>
+            {/* Extra Benefit Card 3 */}
+            <div className="flex flex-col items-center p-6 space-y-4 bg-white rounded-lg shadow-lg">
+              <FaShieldAlt className="h-12 w-12 text-[#6BD8C2]" />
+              <h3 className="text-xl font-bold text-[#305441]">Privacidad Garantizada</h3>
+              <p className="text-center text-gray-600">Tu información está protegida con encriptación de grado militar.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Descarga */}
+      <section id="download" className="w-full py-16 md:py-24 bg-[#305441] text-white">
+        <div className="container px-4 text-center">
+          <h2 className="mb-6 text-3xl font-bold tracking-tighter sm:text-5xl">Descarga la App Ahora</h2>
+          <p className="mb-8 text-lg">¡Empieza hoy mismo y mejora la calidad de vida de tus mascotas!</p>
+          <div className="flex justify-center">
+            {/* Enlace para descargar el APK */}
+            <a
+              href="/apk/PatitasFeliz.apk"  // Ruta del archivo APK en la carpeta "public/apk"
+              className="flex items-center justify-center bg-[#6BD8C2] text-white text-xl px-8 py-4 rounded-lg shadow-lg hover:bg-[#5aaa9a] transition-all duration-300"
+              download  // Atributo para forzar la descarga
+            >
+              <FaAndroid className="mr-3 text-2xl" />
+              Descargar para Android
+            </a>
+          </div>
+        </div>
+      </section>
+
     </div>
-  )
+  );
 }
