@@ -14,11 +14,6 @@ const Navbar = () => {
       icon: <FaCogs className="text-xl" />, // Icono para "Características"
     },
     {
-      id: 2,
-      link: "Testimonios",
-      icon: <FaComments className="text-xl" />, // Icono para "Testimonios"
-    },
-    {
       id: 3,
       link: "Nosotros",
       icon: <FaInfoCircle className="text-xl" />, // Icono para "Nosotros"
@@ -32,19 +27,19 @@ const Navbar = () => {
 
   return (
     <header className="px-4 lg:px-6 h-16 flex items-center justify-between border-b border-[#305441]/20 bg-[#f3f4f6]">
-      <Link className="flex items-center justify-center" href="#">
+      <Link className="flex items-center justify-center" href="/">
         <Image
           src="/logo-rounded.png"
           alt="Patitas Feliz Logo"
           width={48}
           height={48}
-          className="h-12 w-12"
+          className="w-12 h-12"
         />
         <span className="ml-2 text-2xl font-bold text-[#305441]">Patitas Feliz</span>
       </Link>
 
       {/* Navbar para pantallas grandes */}
-      <nav className="ml-auto hidden md:flex gap-6">
+      <nav className="hidden gap-6 ml-auto md:flex">
         {links.map(({ id, link, icon }) => (
           <Link
             key={id}
@@ -73,7 +68,7 @@ const Navbar = () => {
           {links.map(({ id, link, icon }) => (
             <li
               key={id}
-              className={`px-4 cursor-pointer capitalize py-4 text-2xl flex items-center w-full ${
+              className={`px-4 cursor-pointer capitalize py-4 text-xl flex items-center w-full ${
                 link === "Descargar" ? "bg-[#1d3c2a] w-full text-center rounded-md" : ""
               }`}
             >
