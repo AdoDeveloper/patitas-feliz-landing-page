@@ -8,7 +8,7 @@ const Footer = () => {
         <p className="text-xs text-[#305441]">© 2024 Patitas Feliz. Todos los derechos reservados.</p>
         <nav className="flex gap-4 sm:ml-auto sm:gap-6">
           <Link className="text-xs hover:underline underline-offset-4 text-[#305441]" href="./terminos-y-condiciones">Términos de Servicio</Link>
-          <Link className="text-xs hover:underline underline-offset-4 text-[#305441]" href="#">Privacidad</Link>
+          <Link className="text-xs hover:underline underline-offset-4 text-[#305441]" href="./terminos-y-condiciones">Privacidad</Link>
         </nav>
       </div>
     </footer>

@@ -5,11 +5,21 @@ import Link from 'next/link';
 import { Calendar, MapPin, Search } from 'lucide-react';
 import { Button } from './components/ui/button';
 import { useState } from 'react';
-import { FaAndroid, FaUsers, FaClinicMedical, FaShieldAlt } from 'react-icons/fa';
+import { FaAndroid, FaUsers,FaSpinner, FaClinicMedical, FaShieldAlt } from 'react-icons/fa';
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const handleDownload = () => {
+    setIsLoading(true);  // Activa el estado de carga
+
+    // Simula el proceso de descarga (esto puede ser reemplazado por un proceso real)
+    setTimeout(() => {
+      setIsLoading(false);  // Después de 2 segundos, se finaliza la "descarga"
+    }, 3000);
+  };
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -28,20 +38,20 @@ export default function LandingPage() {
                 Con Patitas Feliz, encuentra veterinarios, organiza citas y mantén un registro médico de tus mascotas.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row">
-              <Button
-                className="bg-[#305441] text-white hover:bg-[#2A4A3A]"
-                onClick={() => document.getElementById('descargar').scrollIntoView({ behavior: 'smooth' })}
-              >
-                Descargar Ahora
-              </Button>
+                <Button
+                  className="bg-[#305441] text-white hover:bg-[#2A4A3A]"
+                  onClick={() => document.getElementById('descargar').scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Descargar Ahora
+                </Button>
 
-              <Button
-                variant="outline"
-                className="border-[#305441] text-[#305441] hover:bg-[#305441]/10"
-                onClick={() => document.getElementById('nosotros').scrollIntoView({ behavior: 'smooth' })}
-              >
-                Conoce Más
-              </Button>
+                <Button
+                  variant="outline"
+                  className="border-[#305441] text-[#305441] hover:bg-[#305441]/10"
+                  onClick={() => document.getElementById('nosotros').scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Conoce Más
+                </Button>
               </div>
             </div>
             <div className="flex justify-center">
@@ -106,50 +116,55 @@ export default function LandingPage() {
       <section id="nosotros" className="w-full py-16 md:py-24 bg-[#F5F5F5]">
         <div className="container px-4 md:px-6">
           <h2 className="text-3xl font-bold text-center text-[#305441] mb-12">Preguntas Frecuentes</h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* FAQ Card 1 */}
-            <div className="p-6 bg-white rounded-lg shadow-lg">
-              <h3 className="font-bold text-lg text-[#305441]">¿Es gratuita la aplicación?</h3>
-              <p>Sí, Patitas Feliz es completamente gratuita para los usuarios.</p>
+          <div className="space-y-6">
+            {/* FAQ Item 1 */}
+            <div>
+              <h3 className="text-xl font-bold text-[#305441]">¿Qué es Patitas Feliz?</h3>
+              <p className="text-gray-600">
+                Patitas Feliz es una aplicación móvil que permite a los dueños de mascotas encontrar clínicas veterinarias cercanas y gestionar citas para sus mascotas.
+              </p>
             </div>
-            {/* FAQ Card 2 */}
-            <div className="p-6 bg-white rounded-lg shadow-lg">
-              <h3 className="font-bold text-lg text-[#305441]">¿Cómo encuentro clínicas?</h3>
-              <p>Usa nuestra herramienta de búsqueda para localizar clínicas cercanas a tu ubicación.</p>
+            {/* FAQ Item 2 */}
+            <div>
+              <h3 className="text-xl font-bold text-[#305441]">¿Cómo puedo crear una cuenta?</h3>
+              <p className="text-gray-600">
+                Puedes crear una cuenta como dueño de mascota o dueño de clínica veterinaria mediante un proceso de registro fácil en la app. Solo ingresa tu correo electrónico, crea una contraseña y completa tu perfil.
+              </p>
             </div>
-            {/* FAQ Card 3 */}
-            <div className="p-6 bg-white rounded-lg shadow-lg">
-              <h3 className="font-bold text-lg text-[#305441]">¿La información es segura?</h3>
-              <p>¡Absolutamente! Tu información está protegida con encriptación.</p>
+            {/* FAQ Item 3 */}
+            <div>
+              <h3 className="text-xl font-bold text-[#305441]">¿Cómo agendar una cita en una clínica?</h3>
+              <p className="text-gray-600">
+                Para agendar una cita, solo selecciona una clínica disponible desde la lista de opciones, elige la mascota, la fecha y hora que más te convenga, y confirma la cita.
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Beneficios Extra */}
-      <section id="extra-benefits" className="w-full py-16 md:py-24 bg-[#F5F5F5]">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold text-center text-[#305441] mb-12">
-            ¿Por qué elegir Patitas Feliz?
-          </h2>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {/* Extra Benefit Card 1 */}
-            <div className="flex flex-col items-center p-6 space-y-4 bg-white rounded-lg shadow-lg">
-              <FaUsers className="h-12 w-12 text-[#6BD8C2]" />
-              <h3 className="text-xl font-bold text-[#305441]">Comunidad Activa</h3>
-              <p className="text-center text-gray-600">Únete a muchos usuarios que ya cuidan de sus mascotas con nuestra app.</p>
+            {/* FAQ Item 4 */}
+            <div>
+              <h3 className="text-xl font-bold text-[#305441]">¿Puedo cancelar o reprogramar una cita?</h3>
+              <p className="text-gray-600">
+                Sí, puedes cancelar o reprogramar tus citas directamente desde la app, siempre y cuando la clínica lo permita.
+              </p>
             </div>
-            {/* Extra Benefit Card 2 */}
-            <div className="flex flex-col items-center p-6 space-y-4 bg-white rounded-lg shadow-lg">
-              <FaClinicMedical className="h-12 w-12 text-[#6BD8C2]" />
-              <h3 className="text-xl font-bold text-[#305441]">Soporte Veterinario</h3>
-              <p className="text-center text-gray-600">Accede a servicios profesionales y confiables en todo momento.</p>
+            {/* FAQ Item 5 */}
+            <div>
+              <h3 className="text-xl font-bold text-[#305441]">¿Patitas Feliz tiene algún costo?</h3>
+              <p className="text-gray-600">
+                La descarga y el uso básico de la app es gratuita. Sin embargo, algunas clínicas pueden cobrar por consultas y otros servicios, que deben ser consultados directamente con ellas.
+              </p>
             </div>
-            {/* Extra Benefit Card 3 */}
-            <div className="flex flex-col items-center p-6 space-y-4 bg-white rounded-lg shadow-lg">
-              <FaShieldAlt className="h-12 w-12 text-[#6BD8C2]" />
-              <h3 className="text-xl font-bold text-[#305441]">Privacidad Garantizada</h3>
-              <p className="text-center text-gray-600">Tu información está protegida.</p>
+            {/* FAQ Item 6 */}
+            <div>
+              <h3 className="text-xl font-bold text-[#305441]">¿Puedo confiar en las clínicas que están en la aplicación?</h3>
+              <p className="text-gray-600">
+                Las clínicas están verificadas y han sido registradas a través de nuestro proceso de validación. Sin embargo, siempre te recomendamos leer y verificar la información de las veterinarias antes de agendar una cita.
+              </p>
+            </div>
+            {/* FAQ Item 7 */}
+            <div>
+              <h3 className="text-xl font-bold text-[#305441]">¿Puedo contactar con las clínicas directamente?</h3>
+              <p className="text-gray-600">
+                Sí, a través de la app puedes obtener los datos de contacto de la clínica veterinaria para que puedas comunicarte directamente si es necesario.
+              </p>
             </div>
           </div>
         </div>
@@ -157,23 +172,27 @@ export default function LandingPage() {
 
       {/* Descarga */}
       <section id="descargar" className="w-full py-16 md:py-24 bg-[#305441] text-white">
-        <div className="container px-4 text-center">
-          <h2 className="mb-6 text-3xl font-bold tracking-tighter sm:text-5xl">Descarga la App Ahora</h2>
-          <p className="mb-8 text-lg">¡Empieza hoy mismo y mejora la calidad de vida de tus mascotas!</p>
-          <div className="flex justify-center">
-            {/* Enlace para descargar el APK */}
-            <a
-              href="/apk/PatitasFelizApp.apk"  // Ruta del archivo APK en la carpeta "public/apk"
-              className="flex items-center justify-center bg-[#6BD8C2] text-white text-xl px-8 py-4 rounded-lg shadow-lg hover:bg-[#5aaa9a] transition-all duration-300"
-              download  // Atributo para forzar la descarga
-            >
-              <FaAndroid className="mr-3 text-2xl" />
-              Descargar para Android
-            </a>
-          </div>
+      <div className="container px-4 text-center">
+        <h2 className="mb-6 text-3xl font-bold tracking-tighter sm:text-5xl">Descarga la App Ahora</h2>
+        <p className="mb-8 text-lg">¡Empieza hoy mismo y mejora la calidad de vida de tus mascotas!</p>
+        <div className="flex justify-center">
+          <a
+            href="/apk/PatitasFelizApp.apk"  // Asegúrate de tener el archivo APK en la ruta correcta
+            className="flex items-center justify-center bg-[#51a393] text-white text-xl px-8 py-4 rounded-lg shadow-lg hover:bg-[#58c3ad] transition-all duration-300 transform hover:scale-105 active:scale-95"
+            download
+            onClick={handleDownload}  // Inicia el proceso de descarga al hacer clic
+          >
+            {/* Si está cargando, mostrar el spinner, de lo contrario, mostrar el icono de Android */}
+            {isLoading ? (
+              <FaSpinner className="mr-3 text-2xl animate-spin" /> // Spinner de carga
+            ) : (
+              <FaAndroid className="mr-3 text-2xl" /> // Icono de Android normal
+            )}
+            {isLoading ? 'Procesando...' : 'Descargar para Android'}
+          </a>
         </div>
-      </section>
-
+      </div>
+    </section>
     </div>
   );
 }

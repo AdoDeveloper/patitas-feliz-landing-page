@@ -10,7 +10,7 @@ export const Button = ({ variant = 'solid', size = 'md', children, ...props }: B
   const baseClasses = 'px-4 py-2 rounded-md font-semibold focus:outline-none transition duration-200';
 
   const variantClasses = variant === 'solid' 
-    ? 'bg-[#70A97D] text-white hover:bg-[#609c69]' // Verde más claro
+    ? 'bg-[#609c69] text-white hover:bg-[#70A97D]' // Verde más claro
     : 'border-[#70A97D] text-[#70A97D] hover:bg-[#70A97D]/10'; // Verde claro para borde
 
   const sizeClasses = size === 'sm' 
